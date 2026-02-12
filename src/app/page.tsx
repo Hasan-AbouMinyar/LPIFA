@@ -46,11 +46,11 @@ export default function Home() {
       {/* ─── Navbar ─── */}
       <nav className="sticky top-0 z-40 border-b border-slate-200 bg-white/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-          <span className="text-lg font-bold text-slate-900">LPIFA</span>
+          <Image src="/avatars/logo.png" alt="Logo" width={40} height={40} className="rounded-md" />
           <div className="flex items-center gap-6">
             <a href="#team" className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900">الفريق</a>
             <a href="#promo-video" className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900">الفيديو</a>
-            <Image src="/avatars/  .png" alt="Logo" width={36} height={36} className="rounded-md" />
+
           </div>
         </div>
       </nav>

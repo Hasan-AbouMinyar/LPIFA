@@ -40,8 +40,6 @@ const teamMembers = [
 export default function Home() {
   return (
     <div className="relative min-h-screen bg-white text-slate-900">
-      {/* Subtle Background Grid */}
-      <div className="absolute inset-0 z-0 bg-grid-slate-200 [mask-image:linear-gradient(to_bottom,white_60%,transparent)]" />
 
       {/* ─── Navbar ─── */}
       <nav className="sticky top-0 z-40 border-b border-slate-200 bg-white/80 backdrop-blur-md">

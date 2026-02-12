@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Globe, GraduationCap, Play, Mail } from "lucide-react";
+import { Globe, GraduationCap, Play, Mail, FileText } from "lucide-react";
 
 // WhatsApp SVG icon component (Lucide doesn't include brand icons)
 function WhatsAppIcon({ className }: { className?: string }) {
@@ -46,29 +46,27 @@ export default function Home() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
           <Image src="/avatars/logo.png" alt="Logo" width={40} height={40} className="rounded-md" />
           <div className="flex items-center gap-6">
-            <a href="#team" className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900">الفريق</a>
             <a href="#promo-video" className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900">الفيديو</a>
+            <a href="#poster" className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900">التفاصيل</a>
+            <a href="#team" className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900">الفريق</a>
 
           </div>
         </div>
       </nav>
 
-      <main className="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        {/* ─── Header Section ─── */}
-        <header className="mb-20 text-center">
-
+      {/* ─── Header + Video Section ─── */}
+      <section className="flex min-h-screen flex-col items-center justify-center px-4 sm:px-6 lg:px-8" id="promo-video">
+        <header className="mb-12 text-center">
           <h1 className="mb-6 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
             تعرف على الفريق
           </h1>
-
           <p className="mx-auto max-w-2xl text-lg leading-relaxed text-slate-500">
             نحن مجموعة من المطورين والمصممين الشغوفين، نعمل معًا لتقديم حلول
             برمجية مبتكرة. تعرف على العقول اللامعة وراء هذا المنتج.
           </p>
         </header>
 
-        {/* ─── Video Section ─── */}
-        <section className="mx-auto mb-24 max-w-5xl" id="promo-video">
+        <div className="w-full max-w-5xl">
           <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
             <div className="aspect-video w-full">
               <iframe
@@ -86,100 +84,117 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* ─── Team Grid ─── */}
-        <section id="team">
-          <div className="mb-12 text-center">
-            <h2 className="text-3xl font-bold text-slate-900">أعضاء فريقنا</h2>
-            <div className="mx-auto mt-4 h-0.5 w-16 bg-slate-300" />
-          </div>
+      {/* ─── Poster / PDF Section ─── */}
+      <section className="flex h-screen flex-col items-center justify-center py-8" id="poster">
+        <div className="mb-6 text-center">
+          <h2 className="text-3xl font-bold text-slate-900">تفاصيل المشروع</h2>
+          <div className="mx-auto mt-4 h-0.5 w-16 bg-slate-300" />
+        </div>
+        <div className="flex-1 overflow-hidden px-4">
+          <Image
+            src="/poster.png"
+            alt="ملصق تفاصيل المشروع"
+            width={2000}
+            height={2800}
+            className="h-full w-auto mx-auto object-contain rounded-2xl border border-slate-200 shadow-sm"
+          />
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 max-w-5xl mx-auto">
-            {teamMembers.map((member, index) => (
-              <div
-                key={index}
-                className="group relative overflow-hidden rounded-2xl bg-slate-900 shadow-lg transition-shadow hover:shadow-xl"
-              >
-                {/* ─── Large Photo ─── */}
-                <div className="relative aspect-[3/4] w-full">
-                  <Image
-                    src={member.avatar}
-                    alt={member.name}
-                    width={600}
-                    height={800}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
+      {/* ─── Team Grid ─── */}
+      <section className="flex min-h-screen flex-col items-center justify-center px-4 sm:px-6 lg:px-8" id="team">
+        <div className="mb-12 text-center">
+          <h2 className="text-3xl font-bold text-slate-900">أعضاء فريقنا</h2>
+          <div className="mx-auto mt-4 h-0.5 w-16 bg-slate-300" />
+        </div>
 
-                  {/* Dark gradient overlay at bottom */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                </div>
+        <div className="grid w-full max-w-5xl grid-cols-1 gap-8 md:grid-cols-2">
+          {teamMembers.map((member, index) => (
+            <div
+              key={index}
+              className="group relative overflow-hidden rounded-2xl bg-slate-900 shadow-lg transition-shadow hover:shadow-xl"
+            >
+              {/* ─── Large Photo ─── */}
+              <div className="relative aspect-[3/4] w-full">
+                <Image
+                  src={member.avatar}
+                  alt={member.name}
+                  width={600}
+                  height={800}
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
 
-                {/* ─── Text Content on the overlay ─── */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-right">
-                  <p className="text-base font-bold text-white">
-                    {member.name}
-                  </p>
-                  <p className="text-sm text-white/60">
-                    {member.role}
-                  </p>
+                {/* Dark gradient overlay at bottom */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+              </div>
 
-                  {/* Action buttons row */}
-                  <div className="mt-4 flex gap-2">
-                    <Button
-                      asChild
-                      size="sm"
-                      className="bg-white/15 text-white backdrop-blur-sm hover:bg-white/25 border-0"
+              {/* ─── Text Content on the overlay ─── */}
+              <div className="absolute bottom-0 left-0 right-0 p-6 text-right">
+                <p className="text-base font-bold text-white">
+                  {member.name}
+                </p>
+                <p className="text-sm text-white/60">
+                  {member.role}
+                </p>
+
+                {/* Action buttons row */}
+                <div className="mt-4 flex gap-2">
+                  <Button
+                    asChild
+                    size="sm"
+                    className="bg-white/15 text-white backdrop-blur-sm hover:bg-white/25 border-0"
+                  >
+                    <a href={`mailto:${member.email}`}>
+                      <Mail className="size-4 ms-1.5" />
+                      إيميل
+                    </a>
+                  </Button>
+
+                  <Button
+                    asChild
+                    size="sm"
+                    className="bg-white/15 text-white backdrop-blur-sm hover:bg-white/25 border-0"
+                  >
+                    <a
+                      href={member.whatsapp}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      <a href={`mailto:${member.email}`}>
-                        <Mail className="size-4 ms-1.5" />
-                        إيميل
-                      </a>
-                    </Button>
+                      <WhatsAppIcon className="size-4 ms-1.5" />
+                      واتساب
+                    </a>
+                  </Button>
 
-                    <Button
-                      asChild
-                      size="sm"
-                      className="bg-white/15 text-white backdrop-blur-sm hover:bg-white/25 border-0"
+                  <Button
+                    asChild
+                    size="sm"
+                    className="bg-white/15 text-white backdrop-blur-sm hover:bg-white/25 border-0"
+                  >
+                    <a
+                      href={member.portfolio}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      <a
-                        href={member.whatsapp}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <WhatsAppIcon className="size-4 ms-1.5" />
-                        واتساب
-                      </a>
-                    </Button>
-
-                    <Button
-                      asChild
-                      size="sm"
-                      className="bg-white/15 text-white backdrop-blur-sm hover:bg-white/25 border-0"
-                    >
-                      <a
-                        href={member.portfolio}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Globe className="size-4 ms-1.5" />
-                        المعرض
-                      </a>
-                    </Button>
-                  </div>
+                      <Globe className="size-4 ms-1.5" />
+                      المعرض
+                    </a>
+                  </Button>
                 </div>
               </div>
-            ))}
-          </div>
-        </section>
+            </div>
+          ))}
+        </div>
+      </section>
 
-        {/* ─── Footer ─── */}
-        <footer className="mt-24 border-t border-slate-200 pt-8 text-center">
-          <p className="text-sm text-slate-400">
-            © 2026 LPIFA. جميع الحقوق محفوظة.
-          </p>
-        </footer>
-      </main>
+      {/* ─── Footer ─── */}
+      <footer className="border-t border-slate-200 py-8 text-center">
+        <p className="text-sm text-slate-400">
+          © 2026 LPIFA. جميع الحقوق محفوظة.
+        </p>
+      </footer>
     </div>
   );
 }
